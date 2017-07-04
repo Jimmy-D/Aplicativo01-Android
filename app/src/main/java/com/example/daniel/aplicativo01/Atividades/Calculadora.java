@@ -4,15 +4,12 @@ import android.app.Activity;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.daniel.aplicativo01.R;
-
-/**
- * Created by Daniel on 03/05/2017.
- */
 
 public class Calculadora extends Activity {
     private Button[] Bnum = new Button[10];
@@ -22,9 +19,11 @@ public class Calculadora extends Activity {
     private boolean novoNumero = true;
     private boolean numDouble = false;
     private double ultimoNum = 0.0;
+    private double numVisor = 0.0;
+    final char[] acoes = {'.', 'I', 'C', '/', 'X', '-', '+'};
 
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         Resources res = getResources();
         Configuration conf = res.getConfiguration();
         if(conf.orientation == Configuration.ORIENTATION_PORTRAIT)
@@ -33,6 +32,11 @@ public class Calculadora extends Activity {
             setContentView(R.layout.calculadora_landscape);
 
         final TextView visor = (TextView) findViewById(R.id.visor);
+
+        if (savedInstanceState != null) {
+            stringVisor = savedInstanceState.getString("calc");
+        }
+
         visor.setText(stringVisor);
 
         //Criar botoes numericos
@@ -62,7 +66,7 @@ public class Calculadora extends Activity {
             Bnum[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (stringVisor == "0" || novoNumero) {
+                    if (stringVisor.equals("0") || novoNumero) {
                         stringVisor = "" + num;
                         novoNumero = false;
                     } else {
@@ -86,12 +90,12 @@ public class Calculadora extends Activity {
         }
 
     }
-    final char[] acoes = {'.', 'I', 'C', '/', 'X', '-', '+'};
+
     public void acao(byte bacao) {
         double numVisor = Double.parseDouble(stringVisor);
         switch (acoes[bacao]) {
             case '.':
-                if (stringVisor == "0") {
+                if (stringVisor.equals("0")) {
                     stringVisor = "0.";
                     numDouble = true;
                 }
@@ -143,7 +147,7 @@ public class Calculadora extends Activity {
     }
 
     public double resultado(char bacao) {
-        double numVisor = Double.parseDouble(stringVisor);
+        numVisor = Double.parseDouble(stringVisor);
         switch (bacao) {
             case '/':
                 if (numVisor == 0) {
@@ -168,4 +172,34 @@ public class Calculadora extends Activity {
         return numVisor;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("APP", "App em Resume");
+        Log.d("APP", "Valor de String Visor: " + stringVisor);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("APP", "App em Pause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d("APP", "App em Stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("APP", "App em Destroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("calc", stringVisor);
+    }
 }
