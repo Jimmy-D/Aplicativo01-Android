@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.daniel.aplicativo01.Atividades.AcessoPorSenha;
 import com.example.daniel.aplicativo01.Atividades.Calculadora;
 import com.example.daniel.aplicativo01.Atividades.Preencher;
 import com.example.daniel.aplicativo01.Atividades.SlideFotos;
@@ -48,6 +49,9 @@ public class Menu_main extends AppCompatActivity {
                         break;
                     case 2:
                         startActivity(new Intent(Menu_main.this, Calculadora.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(Menu_main.this, AcessoPorSenha.class));
                         break;
                     default:
                         finish();

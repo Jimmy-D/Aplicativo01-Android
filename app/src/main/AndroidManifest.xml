@@ -22,6 +22,9 @@
         <activity android:name=".Atividades.SlideFotos"/>
         <activity android:name=".Atividades.Preencher"/>
         <activity android:name=".Atividades.Calculadora"/>
+        <activity android:name=".Atividades.AcessoPorSenha"/>
+        <activity android:name=".Atividades.CadastroUsuario"/>
+        <activity android:name=".Atividades.EspacoUsuario"/>
     </application>
 
 </manifest>
