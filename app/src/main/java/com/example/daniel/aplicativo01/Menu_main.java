@@ -24,7 +24,6 @@ public class Menu_main extends AppCompatActivity {
             "Preencher",
             "Calculadora",
             "Acesso",
-            "Jogo",
             "Sair"
     };
 

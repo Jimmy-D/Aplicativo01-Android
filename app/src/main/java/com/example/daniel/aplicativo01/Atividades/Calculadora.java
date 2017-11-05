@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -24,6 +26,16 @@ public class Calculadora extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.requestFeature(Window.FEATURE_NO_TITLE);
+        if(android.os.Build.VERSION.SDK_INT >= 19)
+        {
+            window.getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+
         Resources res = getResources();
         Configuration conf = res.getConfiguration();
         if(conf.orientation == Configuration.ORIENTATION_PORTRAIT)

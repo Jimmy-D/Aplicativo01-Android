@@ -22,9 +22,12 @@
         <activity android:name=".Atividades.SlideFotos"/>
         <activity android:name=".Atividades.Preencher"/>
         <activity android:name=".Atividades.Calculadora"/>
-        <activity android:name=".Atividades.AcessoPorSenha"/>
-        <activity android:name=".Atividades.CadastroUsuario"/>
-        <activity android:name=".Atividades.EspacoUsuario"/>
+        <activity android:name=".Atividades.AcessoPorSenha"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Atividades.CadastroUsuario"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Atividades.EspacoUsuario"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
